@@ -21,3 +21,12 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#target
+/back-end/desafio-cielo/target
+
+#dist
+/front-end/desafio-cielo/dist
+
+#node modules
+/front-end/desafio-cielo/node_modules
