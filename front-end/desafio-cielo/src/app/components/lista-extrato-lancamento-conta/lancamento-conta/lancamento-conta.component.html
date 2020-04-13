@@ -1,0 +1,145 @@
+<mat-card class="container">
+    <mat-card-title>
+        <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-icon [routerLink]="['/extrato', 'lancamentos']">arrow_back</mat-icon>
+            <span *ngIf="id"> Lançamento {{id}}</span>
+        </mat-toolbar>
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="lancamentoForm">
+            <div fxLayout.gt-sm="row wrap" fxLayoutAlign.gt-sm="space-between center" fxLayout.lt-md="column wrap"
+                fxLayoutAlign.lt-md="center center">
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Número da Remessa</mat-label>
+                        <input matInput type="number" formControlName="numeroRemessaBanco">
+                        <mat-error *ngIf="lancamentoForm.get('numeroRemessaBanco').invalid">Campo Obrigatório
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Situação</mat-label>
+                        <input matInput type="text" formControlName="nomeSituacaoRemessa">
+                        <mat-error *ngIf="lancamentoForm.get('nomeSituacaoRemessa').invalid">Campo Obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Código do Banco</mat-label>
+                        <input matInput type="number" formControlName="codigoBanco">
+                        <mat-error *ngIf="lancamentoForm.get('codigoBanco').invalid">Campo Obrigatório</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Agência</mat-label>
+                        <input matInput type="number" formControlName="numeroAgencia">
+                        <mat-error *ngIf="lancamentoForm.get('numeroAgencia').invalid">Campo Obrigatório</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Conta</mat-label>
+                        <input matInput type="text" formControlName="numeroContaCorrente">
+                        <mat-error *ngIf="lancamentoForm.get('numeroContaCorrente').invalid">Campo Obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div fxLayout.gt-sm="row wrap" fxLayoutAlign.gt-sm="space-between center" fxLayout.lt-md="column wrap"
+                fxLayoutAlign.lt-md="center center" class="bloco-form">
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Banco</mat-label>
+                        <input matInput type="text" formControlName="nomeBanco">
+                        <mat-error *ngIf="lancamentoForm.get('nomeBanco').invalid">Campo Obrigatório</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Raíz CNPJ</mat-label>
+                        <input matInput type="text" formControlName="numeroRaizCNPJ">
+                        <mat-error *ngIf="lancamentoForm.get('numeroRaizCNPJ').invalid">Campo Obrigatório</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Sufixo CNPJ</mat-label>
+                        <input matInput type="text" formControlName="numeroSufixoCNPJ">
+                        <mat-error *ngIf="lancamentoForm.get('numeroSufixoCNPJ').invalid">Campo Obrigatório</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Grupo de Pagamento</mat-label>
+                        <input matInput type="text" formControlName="descricaoGrupoPagamento">
+                        <mat-error *ngIf="lancamentoForm.get('descricaoGrupoPagamento').invalid">Campo Obrigatório
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Número do evento</mat-label>
+                        <input matInput type="number" formControlName="numeroEvento">
+                        <mat-error *ngIf="lancamentoForm.get('numeroEvento').invalid">Campo Obrigatório</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div fxLayout.gt-sm="row wrap" fxLayoutAlign.gt-sm="space-between center" fxLayout.lt-md="column wrap"
+                fxLayoutAlign.lt-md="center center" class="bloco-form">
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tipo de Operação</mat-label>
+                        <input matInput type="text" formControlName="nomeTipoOperacao">
+                        <mat-error *ngIf="lancamentoForm.get('nomeTipoOperacao').invalid">Campo Obrigatório</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Quantidade de Remessas</mat-label>
+                        <input matInput type="number" formControlName="quantidadeLancamentoRemessa">
+                        <mat-error *ngIf="lancamentoForm.get('quantidadeLancamentoRemessa').invalid">Campo Obrigatório
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Valor da Remessa</mat-label>
+                        <input matInput type="number" min="0" step="any" formControlName="valorLancamentoRemessa">
+                        <mat-error *ngIf="lancamentoForm.get('valorLancamentoRemessa').invalid">Campo Obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Data do lançamento</mat-label>
+                        <input matInput [matDatepicker]="dataLancamento"
+                            formControlName="dataLancamentoContaCorrenteCliente">
+                        <mat-datepicker-toggle matSuffix [for]="dataLancamento"></mat-datepicker-toggle>
+                        <mat-datepicker #dataLancamento></mat-datepicker>
+                        <mat-error *ngIf="lancamentoForm.get('dataLancamentoContaCorrenteCliente').invalid">Campo
+                            Obrigatório</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Data de confirmação</mat-label>
+                        <input matInput [matDatepicker]="dataEfetiva" formControlName="dataEfetivaLancamento">
+                        <mat-datepicker-toggle matSuffix [for]="dataEfetiva"></mat-datepicker-toggle>
+                        <mat-datepicker #dataEfetiva></mat-datepicker>
+                        <mat-error *ngIf="lancamentoForm.get('dataEfetivaLancamento').invalid">Campo Obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+
+        <div fxLayout="row warp" fxLayoutAlign="end center" class="acoes">
+            <button mat-raised-button color="primary" (click)="saveOrUpdate()"
+                [disabled]="lancamentoForm.invalid">{{acao}}</button>
+            <button mat-raised-button color="warn" [routerLink]="['/extrato', 'lancamentos']">Cancelar</button>
+        </div>
+    </mat-card-content>
+</mat-card>
